@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salmon with Rub - Lozzy's Dilemma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Nosifer", cursive;
+        color: #8a0303;
+        position: relative;
+      }
+
+      .message-container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 800px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .eerie-message {
+        font-size: 3rem;
+        line-height: 1.4;
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+        animation: pulsate 2s infinite alternate;
+      }
+
+      @keyframes pulsate {
+        0% {
+          text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+        }
+        100% {
+          text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+        }
+      }
+
+      .back-link {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #666;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+
+      .back-link:hover {
+        color: #999;
+      }
+
+      /* Wrong choice button */
+      .wrong-choice-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 25px;
+        background-color: #1a0000;
+        border: 2px solid #ff0000;
+        color: #ff0000;
+        font-family: "Creepster", cursive;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .wrong-choice-button:hover {
+        background-color: #300;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+        transform: scale(1.05);
+      }
+
+      .wrong-choice-button:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 0, 0, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .wrong-choice-button:hover:before {
+        left: 100%;
+      }
+
+      .button-container {
+        text-align: center;
+        margin-top: 20px;
+        position: relative;
+        z-index: 5;
+      }
+
+      /* Background effects */
+      .bg-effect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(40, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 1) 70%
+        );
+        opacity: 0.7;
+        z-index: 1;
+      }
+
+      /* Spider web in corner */
+      .web {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        height: 200px;
+        border-bottom-left-radius: 200px;
+        background: radial-gradient(
+          circle at top right,
+          transparent 30%,
+          rgba(255, 255, 255, 0.1) 40%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.1) 60%,
+          transparent 70%,
+          rgba(255, 255, 255, 0.1) 80%,
+          transparent 90%
+        );
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-effect"></div>
+    <div class="web"></div>
+    <div class="message-container">
+      <h1 class="eerie-message">
+        Ye who have forsaken the righteous path, thou shall burn.
+      </h1>
+
+      <div class="button-container">
+        <a href="./index.html" class="wrong-choice-button"
+          >Try again. Wrong choice Bozo</a
+        >
+      </div>
+    </div>
+
+    <a href="./index.html" class="back-link">Return to shelf</a>
+  </body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mac and Cheese - Lozzy's Dilemma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Tangerine:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f9f3e9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Cormorant Garamond", serif;
+        color: #5a3825;
+        position: relative;
+      }
+
+      .baroque-frame {
+        position: relative;
+        width: 90%;
+        max-width: 800px;
+        height: 80vh;
+        max-height: 600px;
+        border: 35px solid transparent;
+        border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="none" stroke="gold" stroke-width="8"/><path d="M0,0 C30,10 70,10 100,0 M0,100 C30,90 70,90 100,100 M0,0 C10,30 10,70 0,100 M100,0 C90,30 90,70 100,100" fill="none" stroke="gold" stroke-width="5"/><path d="M25,0 C25,25 0,25 0,25 M75,0 C75,25 100,25 100,25 M25,100 C25,75 0,75 0,75 M75,100 C75,75 100,75 100,75" fill="none" stroke="gold" stroke-width="5"/></svg>')
+          35;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.7)
+          ),
+          url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Claude_Lorrain_-_Landscape_with_Apollo_and_the_Muses_-_Google_Art_Project.jpg/1280px-Claude_Lorrain_-_Landscape_with_Apollo_and_the_Muses_-_Google_Art_Project.jpg");
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 10px 30px rgba(90, 56, 37, 0.3);
+      }
+
+      .content {
+        text-align: center;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        max-width: 80%;
+      }
+
+      .message {
+        font-size: 2.5rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        color: #5a3825;
+      }
+
+      .title {
+        font-family: "Tangerine", cursive;
+        font-size: 4rem;
+        color: #8b5a2b;
+        margin-bottom: 1.5rem;
+        text-shadow: 1px 1px 2px rgba(139, 90, 43, 0.3);
+      }
+
+      .back-link {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #8b5a2b;
+        text-decoration: none;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.2rem;
+        transition: color 0.3s;
+        z-index: 10;
+      }
+
+      .back-link:hover {
+        color: #5a3825;
+      }
+
+      /* Secret button */
+      .secret-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: linear-gradient(to right, #f9e8b8, #e6c675, #f9e8b8);
+        border: 2px solid #8b5a2b;
+        border-radius: 5px;
+        color: #5a3825;
+        font-family: "Tangerine", cursive;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(139, 90, 43, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .secret-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(139, 90, 43, 0.4);
+      }
+
+      .secret-button:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 215, 0, 0.3) 0%,
+          rgba(255, 215, 0, 0) 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .secret-button:hover:before {
+        opacity: 1;
+      }
+
+      .button-container {
+        text-align: center;
+        position: absolute;
+        bottom: 5rem;
+        left: 0;
+        right: 0;
+        z-index: 10;
+      }
+
+      /* Decorative elements */
+      .cherub {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="40" r="25" fill="gold" opacity="0.7"/><circle cx="50" cy="40" r="20" fill="white" opacity="0.9"/></svg>');
+        background-size: contain;
+        opacity: 0.6;
+      }
+
+      .cherub-1 {
+        top: 10%;
+        left: 10%;
+        animation: float 8s infinite ease-in-out;
+      }
+
+      .cherub-2 {
+        top: 15%;
+        right: 10%;
+        animation: float 10s infinite ease-in-out;
+      }
+
+      .cherub-3 {
+        bottom: 15%;
+        left: 15%;
+        animation: float 9s infinite ease-in-out;
+      }
+
+      .cherub-4 {
+        bottom: 10%;
+        right: 15%;
+        animation: float 7s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-15px) rotate(5deg);
+        }
+      }
+
+      /* Flowers */
+      .flowers {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><circle cx="20" cy="25" r="8" fill="pink"/><circle cx="17" cy="22" r="3" fill="yellow"/><circle cx="23" cy="22" r="3" fill="yellow"/><circle cx="17" cy="28" r="3" fill="yellow"/><circle cx="23" cy="28" r="3" fill="yellow"/><circle cx="50" cy="25" r="8" fill="lightblue"/><circle cx="47" cy="22" r="3" fill="white"/><circle cx="53" cy="22" r="3" fill="white"/><circle cx="47" cy="28" r="3" fill="white"/><circle cx="53" cy="28" r="3" fill="white"/><circle cx="80" cy="25" r="8" fill="lavender"/><circle cx="77" cy="22" r="3" fill="white"/><circle cx="83" cy="22" r="3" fill="white"/><circle cx="77" cy="28" r="3" fill="white"/><circle cx="83" cy="28" r="3" fill="white"/></svg>');
+        background-repeat: repeat-x;
+        background-size: 100px 50px;
+        opacity: 0.7;
+        z-index: -1;
+      }
+
+      /* Soft light effect */
+      .light-rays {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(255, 253, 231, 0.5) 0%,
+          rgba(255, 253, 231, 0) 70%
+        );
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="light-rays"></div>
+    <div class="cherub cherub-1"></div>
+    <div class="cherub cherub-2"></div>
+    <div class="cherub cherub-3"></div>
+    <div class="cherub cherub-4"></div>
+    <div class="flowers"></div>
+
+    <div class="baroque-frame">
+      <div class="content">
+        <h1 class="title">Heavenly Bliss</h1>
+        <p class="message">
+          Mother is so happy with you.<br />You want for nothing.<br />You are
+          whole. Complete.<br />Finally beautiful.
+        </p>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <a href="./success.html">
+        <button class="secret-button">I found the secret of life</button>
+      </a>
+    </div>
+
+    <a href="./index.html" class="back-link">Return to shelf</a>
+  </body>
+</html>

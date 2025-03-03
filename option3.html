@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beans and Rice - Lozzy's Dilemma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Roboto Mono", monospace;
+        color: #33ff33;
+        position: relative;
+      }
+
+      .terminal-container {
+        width: 90%;
+        max-width: 800px;
+        height: 80vh;
+        max-height: 600px;
+        background-color: #000;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 30px rgba(51, 255, 51, 0.2);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .terminal-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #33ff33;
+        padding-bottom: 10px;
+      }
+
+      .terminal-buttons {
+        display: flex;
+        margin-right: 15px;
+      }
+
+      .terminal-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .terminal-button.red {
+        background-color: #ff5f56;
+      }
+
+      .terminal-button.yellow {
+        background-color: #ffbd2e;
+      }
+
+      .terminal-button.green {
+        background-color: #27c93f;
+      }
+
+      .terminal-title {
+        font-size: 0.9rem;
+        color: #999;
+      }
+
+      .terminal-content {
+        height: calc(100% - 50px);
+        overflow-y: auto;
+        padding-right: 10px;
+      }
+
+      .terminal-line {
+        margin-bottom: 15px;
+        line-height: 1.5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .prompt {
+        color: #ff5f56;
+        margin-right: 10px;
+      }
+
+      .command {
+        color: #ffbd2e;
+      }
+
+      .output {
+        display: block;
+        margin-top: 5px;
+        white-space: pre-wrap;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 10px;
+        height: 18px;
+        background-color: #33ff33;
+        animation: blink 1s infinite;
+        vertical-align: middle;
+      }
+
+      @keyframes blink {
+        0%,
+        49% {
+          opacity: 1;
+        }
+        50%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .typing {
+        animation: typing 3s steps(40, end);
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .back-link {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #33ff33;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+        z-index: 10;
+      }
+
+      .back-link:hover {
+        color: #ffbd2e;
+      }
+
+      /* Bean God button */
+      .bean-god-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #000;
+        border: 2px solid #33ff33;
+        color: #33ff33;
+        font-family: "Roboto Mono", monospace;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .bean-god-button:hover {
+        background-color: #33ff33;
+        color: #000;
+        box-shadow: 0 0 15px rgba(51, 255, 51, 0.7);
+      }
+
+      .button-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* Matrix-like background effect */
+      .matrix-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.1;
+        overflow: hidden;
+      }
+
+      .matrix-column {
+        position: absolute;
+        top: -100px;
+        font-family: "Roboto Mono", monospace;
+        font-size: 1.2rem;
+        color: #33ff33;
+        text-shadow: 0 0 5px #33ff33;
+        animation: fall linear infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="matrix-bg" id="matrix-bg"></div>
+
+    <div class="terminal-container">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <div class="terminal-button red"></div>
+          <div class="terminal-button yellow"></div>
+          <div class="terminal-button green"></div>
+        </div>
+        <div class="terminal-title">lozzy@dilemma:~</div>
+      </div>
+
+      <div class="terminal-content">
+        <div class="terminal-line">
+          <span class="prompt">lozzy@dilemma:~$</span>
+          <span class="command typing">cat message.txt</span>
+        </div>
+
+        <div class="terminal-line">
+          <span class="output">
+            You have hacked the matrix. Beans: Simple, humble, delicious. The
+            humble pod has sustained civilizations. Meaty, filling, and without
+            excess and averice. The void stares back, but you have what you
+            need. You are ready for this journey. Thank you for accepting.
+          </span>
+        </div>
+
+        <div class="terminal-line">
+          <span class="prompt">lozzy@dilemma:~$</span>
+          <span class="cursor"></span>
+        </div>
+
+        <div class="button-container">
+          <a href="./success.html">
+            <button class="bean-god-button">I accept the Bean God life</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="./index.html" class="back-link">Return to shelf</a>
+
+    <script>
+      // Matrix background effect
+      const matrixBg = document.getElementById("matrix-bg");
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$#@%&*()_+-=[]{}|;:,.<>/?";
+      const columns = Math.floor(window.innerWidth / 20);
+
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement("div");
+        column.className = "matrix-column";
+        column.style.left = i * 20 + "px";
+        column.style.animationDuration = 3 + Math.random() * 5 + "s";
+
+        let columnText = "";
+        const columnLength = 10 + Math.floor(Math.random() * 15);
+        for (let j = 0; j < columnLength; j++) {
+          columnText +=
+            characters.charAt(Math.floor(Math.random() * characters.length)) +
+            "<br>";
+        }
+
+        column.innerHTML = columnText;
+        matrixBg.appendChild(column);
+      }
+
+      // Add animation to matrix columns
+      const style = document.createElement("style");
+      style.innerHTML = `
+            @keyframes fall {
+                0% { transform: translateY(-100%); }
+                100% { transform: translateY(${window.innerHeight}px); }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
